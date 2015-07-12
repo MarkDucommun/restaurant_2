@@ -7,8 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Restaurant App", restaurants_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+          	<% if owner_signed_in? %>
+          		<li><%= link_to current_owner.email, edit_owner_registration_path %></li>
+          		<li><%= link_to "Logout", destroy_owner_session_path, method: :delete  %></li>
+          	<% else %>
+	            <li><%= link_to "Sign Up", new_owner_registration_path %></li>
+	            <li><%= link_to "Login", new_owner_session_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <br>
+    <div class="container">
+		<% if notice %><div class="alert alert-info"><%= notice %> </div><% end %>
+		<% if alert %><div class="alert alert-warning"><%= alert %> </div><% end %>
+    	<%= yield %>
+    </div>
 
 </body>
 </html>
