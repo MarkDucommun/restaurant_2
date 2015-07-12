@@ -1,0 +1,35 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+ 
+<p>
+  <strong>description:</strong>
+  <%= @restaurant.description %>
+</p>
+
+<p>
+  <strong>Address</strong>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+	<strong>Phone Number</strong>
+	<%= @restaurant.phone_number %>
+</p>
+
+
+
+<div>
+  <li><%= link_to 'Index', controller: "restaurants", action: "index" %></li>
+	<li><%= link_to 'Edit', edit_restaurant_path %></li>
+	<li><%= link_to 'Destroy', controller: "restaurants" %></li><br>
+</div>
+
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%=@restaurant.address%>
+&zoom=13
+&size=400x400
+&markers=color:blue%7Clabel:S%7C<%=@restaurant.address%>" >
+
+
