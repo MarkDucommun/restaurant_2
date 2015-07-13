@@ -1,4 +1,6 @@
 class RestaurantsController < ApplicationController
+  before_action :authenticate_owner!, except: [:index, :show]
+  
   def index
   	@restaurants = Restaurant.all
   end
@@ -17,13 +19,14 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-  	@restaurant = Restaurant.new(restaurant_params)
- 	
- 	if @restaurant.save
- 		redirect_to @restaurant
- 	else
- 		render 'new'
- 	end
+    final_params = restaurant_params.merge(owner: current_owner)
+    @restaurant = Restaurant.new(final_params)
+  
+   	if @restaurant.save
+   		redirect_to @restaurant
+   	else
+   		render 'new'
+   	end
 
    end
 

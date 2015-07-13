@@ -7,6 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+<% if !!current_owner == true %>
+  <p>Hello <%= current_owner.name %></p>
+  <%= link_to "Sign Out", destroy_owner_session_path, method: :delete %>
+<% else %>
+  <%= link_to "Sign In", new_owner_session_path %>
+  <span> OR </span>
+  <%= link_to "Sign Up", new_owner_registration_path %>
+<% end %>
+  
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 
