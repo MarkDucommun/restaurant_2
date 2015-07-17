@@ -1,9 +1,14 @@
+<p>
+  <strong>Owner: </strong>
+  <%= @restaurant.owner.name %>
+</p>
+
 
 <p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
 </p>
- 
+
 <p>
   <strong>description:</strong>
   <%= @restaurant.description %>
@@ -31,5 +36,3 @@
 &zoom=13
 &size=400x400
 &markers=color:blue%7Clabel:S%7C<%=@restaurant.address%>" >
-
-

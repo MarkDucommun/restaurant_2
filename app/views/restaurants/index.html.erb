@@ -1,13 +1,13 @@
 
 <h1>All restaurants</h1>
- 
+
 <table>
   <tr>
     <th>Name</th>
     <th>Description</th>
     <th colspan="2"></th>
   </tr>
- 
+
   <% @restaurants.each do |restaurant| %>
     <tr>
       <td><%= restaurant.name %></td>
@@ -15,12 +15,15 @@
       <td><%= restaurant.description %></td>
       <td><%= restaurant.phone_number %></td>
       <td><%= link_to 'Show', restaurant_path(restaurant) %></td>
-      <td><%= link_to 'New', new_restaurant_path(restaurant) %></td>
-      <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-      <td><%= link_to 'Destroy', restaurant_path(restaurant),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <% if current_owner %>
+        <td><%= link_to 'New', new_restaurant_path(restaurant) %></td>
+        <% if restaurant.owner == current_owner %>
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to 'Destroy', restaurant_path(restaurant),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
 </table>
-
